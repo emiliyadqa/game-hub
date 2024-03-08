@@ -6,12 +6,7 @@ import { GameQuery } from "../App";
 // import useData from "./useData";
 import apiClient from "../services/api-client";
 import { FetchResponse } from "../services/api-client";
-
-export interface Platform {
-  id: number;
-  name: string;
-  slug: string;
-}
+import { Platform } from "./usePlatforms";
 
 export interface Game {
   id: number;

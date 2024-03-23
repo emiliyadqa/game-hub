@@ -5,26 +5,18 @@ import GameCardSkeleton from "./GameCardSkeleton";
 import GameCardContainer from "./GameCardContainer";
 // import { Genre } from "../hooks/useGenre";
 // import { Platform } from "../hooks/usePlatforms";
-import { GameQuery } from "../App";
 import React from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 // import GameHeading from "./GameHeading";
 
-interface Props {
-  gameQuery: GameQuery;
-  // selectedGenre: Genre | null;
-  // selectedPlatform: Platform | null;
-}
-
-const GameGrid = ({ gameQuery }: Props) => {
+const GameGrid = () => {
   const {
     data: games,
     error,
     isLoading,
-    isFetchingNextPage,
     fetchNextPage,
     hasNextPage,
-  } = useGames(gameQuery);
+  } = useGames();
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   if (error) return <Text>{error.message}</Text>;

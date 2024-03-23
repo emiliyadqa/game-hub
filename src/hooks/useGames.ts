@@ -1,13 +1,13 @@
 // import { useEffect, useState } from "react";
 // import apiClient from "../services/api-client";
 // import { CanceledError } from "axios";
-import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
-import { GameQuery } from "../App";
+import { useInfiniteQuery } from "@tanstack/react-query";
 // import useData from "./useData";
 // import apiClient from "../services/api-client";
 import APIClient, { FetchResponse } from "../services/api-client";
 import { Platform } from "./usePlatforms";
 import ms from "ms";
+import useGameQueryStore from "../store";
 
 const apiClient = new APIClient<Game>("/games");
 
@@ -20,12 +20,9 @@ export interface Game {
   rating_top: number;
 }
 
-const useGames = (
-  gameQuery: GameQuery
-  // selectedGenre: Genre | null,
-  // selectedPlatform: Platform | null
-) =>
-  useInfiniteQuery<FetchResponse<Game>, Error>({
+const useGames = () => {
+  const gameQuery = useGameQueryStore((s) => s.gameQuery);
+  return useInfiniteQuery<FetchResponse<Game>, Error>({
     queryKey: ["games", gameQuery],
     queryFn: ({ pageParam = 1 }) =>
       apiClient.getAll({
@@ -54,6 +51,7 @@ const useGames = (
     //     })
     //     .then((res) => res.data),
   });
+};
 
 // interface FetchGamesResponse {
 //   count: number;

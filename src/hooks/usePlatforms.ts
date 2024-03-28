@@ -3,14 +3,9 @@ import APIClient from "../services/api-client";
 // import apiClient from "../services/api-client";
 import platforms from "../data/platforms";
 import ms from "ms";
+import { Platform } from "../entities/Platform";
 
 const apiClient = new APIClient<Platform>("/platforms/lists/parents");
-
-export interface Platform {
-  id: number;
-  name: string;
-  slug: string;
-}
 
 // const usePlatforms = () => useData<Platform>("/platforms/lists/parents");
 
